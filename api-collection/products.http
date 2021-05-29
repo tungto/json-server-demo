@@ -1,0 +1,63 @@
+@baseUrl = http://localhost:3000/api
+
+
+@resourceName = products
+
+#categories
+# @name getAllCategories
+
+GET {{baseUrl}}/{{resourceName}}
+
+
+###
+
+# @name getSingleProduct
+GET {{baseUrl}}/{{resourceName}}?id=b7ad2b75-fd86-434f-a779-d5730dc77d9a
+
+###
+
+# @name filterProducts
+
+Get {{baseUrl}}/{{resourceName}}?color=lavender&price_gte=153
+
+
+###
+
+# @name pagination
+
+Get {{baseUrl}}/{{resourceName}}?_page=1&_limit=5
+
+###
+
+# @name sort
+
+Get {{baseUrl}}/{{resourceName}}?_sort=price&_order=asc
+
+###
+
+POST {{baseUrl}}/{{resourceName}}
+Content-Type: application/json
+
+{
+    "categoryId": "dcd7ada1-9ac3-4c52-8b10-83be07540efe",
+    "id": "b5cfbd6a-8a6f-4697-ad09-52a8da666301",
+    "name": "Intelligent Wooden Pants",
+    "color": "lightblue",
+    "price": 859,
+    "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+    "thumbnailUrl": "http://placeimg.com/400/400"
+  }
+
+###
+
+# @name updateCategory
+PATCH  {{baseUrl}}/{{resourceName}}/2
+Content-Type: application/json
+
+{"name": "NEw Laptop"}
+
+###
+
+# @name removeCategory
+DELETE {{baseUrl}}/{{resourceName}}/2
+
