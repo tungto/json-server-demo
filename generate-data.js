@@ -54,7 +54,7 @@ const randomProductList = (categoryList, numberOfProducts) => {
             )
           ),
         ],
-        category: category,
+        category: category.name,
         images: images,
         reviews: Math.floor(Math.random() * 1000),
         stars: parseFloat(Math.floor(Math.random() * 5) + 1).toFixed(1),
