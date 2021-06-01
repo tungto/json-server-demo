@@ -23,7 +23,9 @@ const randomImages = () => {
   Array.from({ length: 6 }).forEach(() => {
     const image = {
       id: faker.datatype.uuid(),
-      url: faker.image.imageUrl(800, 800),
+      url: `${faker.image.nature(400, 300)}?random=${Math.round(
+        Math.random() * 1000
+      )}`,
       filename: faker.commerce.productName(),
     };
     imagesList.push(image);
@@ -41,26 +43,28 @@ const randomProductList = (categoryList, numberOfProducts) => {
     for (let i = 0; i < numberOfProducts; i++) {
       productList.push({
         categoryId: category.id,
-        company: category.company,
         id: faker.datatype.uuid(),
         stock: Math.floor(Math.random() * 10),
-        name: faker.commerce.productName(),
-        color: [
+        price: Number.parseFloat(faker.commerce.price()),
+        shipping: faker.datatype.boolean(),
+        colors: [
           ...new Set(
-            Array.from({ length: Math.random() * 3 + 1 }, () =>
+            Array.from({ length: Math.ceil(Math.random() * 3) + 1 }, () =>
               faker.commerce.color()
             )
           ),
         ],
-        price: Number.parseFloat(faker.commerce.price()),
+        category: category,
+        images: images,
+        reviews: Math.floor(Math.random() * 1000),
+        stars: parseFloat(Math.floor(Math.random() * 5) + 1).toFixed(1),
+        name: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
+        company: category.company,
         createdAt: Date.now(),
         updatedAt: Date.now(),
-        images: images,
-        shipping: faker.datatype.boolean(),
+
         featured: faker.datatype.boolean(),
-        stars: parseFloat(Math.random() * 5 + 1).toFixed(1),
-        reviews: Math.floor(Math.random() * 1000),
       });
     }
   }
